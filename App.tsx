@@ -172,28 +172,28 @@ const App: React.FC = () => {
       {/* HUD - 信息面板 */}
       <div className="w-full flex justify-between items-center px-2 max-w-5xl">
         {/* 对手面板 - AI */}
-        <div className="flex flex-col items-center gap-1 bg-black/20 p-2 md:p-3 rounded-2xl border border-white/10 min-w-[70px] md:min-w-[80px] shadow-lg backdrop-blur-sm">
-          <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg md:text-xl border-2 border-white shadow-inner">
+        <div className="flex flex-col items-center gap-1 bg-black/20 p-2 md:p-3 rounded-2xl border border-white/10 min-w-[90px] md:min-w-[120px] shadow-lg backdrop-blur-sm transition-all">
+          <div className="w-10 h-10 md:w-16 md:h-16 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg md:text-2xl border-2 border-white shadow-inner">
             AI
           </div>
-          <p className="text-white/60 text-[9px] md:text-[10px] uppercase font-black tracking-widest mt-0.5">对手</p>
-          <p className="text-white font-black text-[10px] md:text-xs whitespace-nowrap">{aiHand.length} 张牌</p>
+          <p className="text-white/60 text-lg md:text-2xl uppercase font-black tracking-widest mt-0.5">对手</p>
+          <p className="text-white font-black text-xl md:text-3xl whitespace-nowrap">{aiHand.length} 张牌</p>
         </div>
         
         {/* 中央提示信息 - 优化宽度逻辑 */}
         <div className="flex-1 mx-2 bg-black/40 px-2 md:px-6 py-2 rounded-full border border-white/10 shadow-xl text-center min-w-0">
-          <p className="text-yellow-400 font-black text-[10px] sm:text-xs md:text-base tracking-wider uppercase title-font leading-tight">
+          <p className="text-yellow-400 font-black text-xs sm:text-sm md:text-2xl tracking-wider uppercase title-font leading-tight">
             {message}
           </p>
         </div>
 
         {/* 玩家面板 - 我 */}
-        <div className="flex flex-col items-center gap-1 bg-black/20 p-2 md:p-3 rounded-2xl border border-white/10 min-w-[70px] md:min-w-[80px] shadow-lg backdrop-blur-sm">
-          <div className="w-10 h-10 md:w-12 md:h-12 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-lg md:text-xl border-2 border-white shadow-inner">
+        <div className="flex flex-col items-center gap-1 bg-black/20 p-2 md:p-3 rounded-2xl border border-white/10 min-w-[90px] md:min-w-[120px] shadow-lg backdrop-blur-sm transition-all">
+          <div className="w-10 h-10 md:w-16 md:h-16 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-lg md:text-2xl border-2 border-white shadow-inner">
             我
           </div>
-          <p className="text-white/60 text-[9px] md:text-[10px] uppercase font-black tracking-widest mt-0.5">玩家</p>
-          <p className="text-white font-black text-[10px] md:text-xs whitespace-nowrap">{playerHand.length} 张牌</p>
+          <p className="text-white/60 text-lg md:text-2xl uppercase font-black tracking-widest mt-0.5">玩家</p>
+          <p className="text-white font-black text-xl md:text-3xl whitespace-nowrap">{playerHand.length} 张牌</p>
         </div>
       </div>
 
@@ -221,7 +221,7 @@ const App: React.FC = () => {
                 <div className="absolute -inset-1 bg-yellow-400/20 rounded-lg blur group-hover:bg-yellow-400/40 transition-all"></div>
                 <Card card={{} as any} hidden size="md" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-white font-black text-2xl drop-shadow-md">{deck.length}</span>
+                    <span className="text-white font-black text-3xl md:text-4xl drop-shadow-md">{deck.length}</span>
                 </div>
               </div>
               <span className="text-white/50 text-xs font-bold uppercase tracking-tighter">摸牌堆</span>
