@@ -171,30 +171,29 @@ const App: React.FC = () => {
     <div className="h-screen w-full relative flex flex-col items-center justify-between py-6 px-4 bg-gradient-to-b from-[#065f46] to-[#064e3b]">
       {/* HUD - 信息面板 */}
       <div className="w-full flex justify-between items-center px-4 max-w-5xl">
-        <div className="flex items-center gap-4 bg-black/20 p-3 rounded-xl border border-white/10">
-          <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl border-2 border-white">
+        {/* 对手面板 - AI */}
+        <div className="flex flex-col items-center gap-1 bg-black/20 p-3 rounded-2xl border border-white/10 min-w-[80px] shadow-lg backdrop-blur-sm">
+          <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl border-2 border-white shadow-inner">
             AI
           </div>
-          <div>
-            <p className="text-white/60 text-xs uppercase font-bold tracking-wider">对手</p>
-            <p className="text-white font-bold">{aiHand.length} 张牌</p>
-          </div>
+          <p className="text-white/60 text-[10px] uppercase font-black tracking-widest mt-1">对手</p>
+          <p className="text-white font-black text-xs">{aiHand.length} 张牌</p>
         </div>
         
-        <div className="bg-black/40 px-6 py-2 rounded-full border border-white/10 shadow-lg">
-          <p className="text-yellow-400 font-black text-sm md:text-lg tracking-widest uppercase title-font">
+        {/* 中央提示信息 */}
+        <div className="bg-black/40 px-6 py-2 rounded-full border border-white/10 shadow-xl max-w-[40%] text-center">
+          <p className="text-yellow-400 font-black text-sm md:text-base tracking-wider uppercase title-font truncate">
             {message}
           </p>
         </div>
 
-        <div className="flex items-center gap-4 bg-black/20 p-3 rounded-xl border border-white/10">
-          <div className="text-right">
-            <p className="text-white/60 text-xs uppercase font-bold tracking-wider">玩家</p>
-            <p className="text-white font-bold">{playerHand.length} 张牌</p>
-          </div>
-          <div className="w-12 h-12 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-xl border-2 border-white">
+        {/* 玩家面板 - 我 */}
+        <div className="flex flex-col items-center gap-1 bg-black/20 p-3 rounded-2xl border border-white/10 min-w-[80px] shadow-lg backdrop-blur-sm">
+          <div className="w-12 h-12 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-xl border-2 border-white shadow-inner">
             我
           </div>
+          <p className="text-white/60 text-[10px] uppercase font-black tracking-widest mt-1">玩家</p>
+          <p className="text-white font-black text-xs">{playerHand.length} 张牌</p>
         </div>
       </div>
 
@@ -202,7 +201,7 @@ const App: React.FC = () => {
       <div className="flex-1 w-full flex flex-col items-center justify-center relative max-w-5xl">
         
         {/* AI 手牌 (仅视觉展示) */}
-        <div className="absolute top-0 flex -space-x-8 md:-space-x-12 opacity-80">
+        <div className="absolute top-0 flex -space-x-8 md:-space-x-12 opacity-80 scale-75 md:scale-100 origin-top">
           {aiHand.map((_, i) => (
             <div key={i} className="transform scale-75 md:scale-90">
                 <Card card={{} as any} hidden size="sm" />
@@ -213,7 +212,7 @@ const App: React.FC = () => {
         {/* 中心牌堆 */}
         {gameState !== GameState.LOBBY && (
           <div className="flex gap-8 md:gap-24 items-center">
-            {/* 摸牌堆 */}
+            {/*摸牌堆*/}
             <div className="flex flex-col items-center gap-2">
               <div 
                 className={`relative group ${gameState === GameState.PLAYER_TURN ? 'cursor-pointer' : 'opacity-50 pointer-events-none'}`}
@@ -225,10 +224,10 @@ const App: React.FC = () => {
                     <span className="text-white font-black text-2xl drop-shadow-md">{deck.length}</span>
                 </div>
               </div>
-              <span className="text-white/50 text-xs font-bold uppercase">摸牌堆</span>
+              <span className="text-white/50 text-xs font-bold uppercase tracking-tighter">摸牌堆</span>
             </div>
 
-            {/* 弃牌堆 */}
+            {/*弃牌堆*/}
             <div className="flex flex-col items-center gap-2">
               <div className="relative">
                 {/* 视觉堆叠效果 */}
@@ -241,9 +240,9 @@ const App: React.FC = () => {
                   <Card card={topCard} size="md" disabled />
                 </div>
               </div>
-              <div className="flex items-center gap-2">
-                 <span className="text-white/50 text-xs font-bold uppercase">当前花色:</span>
-                 <span className={`text-xl font-bold ${activeSuit === Suit.HEARTS || activeSuit === Suit.DIAMONDS ? 'text-red-500' : 'text-slate-900'} bg-white/90 px-2 rounded`}>
+              <div className="flex items-center gap-2 bg-white/10 px-2 py-1 rounded border border-white/5">
+                 <span className="text-white/50 text-[10px] font-bold uppercase">当前花色:</span>
+                 <span className={`text-sm font-black ${activeSuit === Suit.HEARTS || activeSuit === Suit.DIAMONDS ? 'text-red-500' : 'text-slate-900'} bg-white/90 px-1.5 rounded-sm`}>
                    {activeSuit}
                  </span>
               </div>
@@ -254,8 +253,9 @@ const App: React.FC = () => {
         {/* 游戏大厅界面 */}
         {gameState === GameState.LOBBY && (
           <div className="text-center space-y-8 p-12 bg-black/30 rounded-3xl backdrop-blur-md border border-white/10 shadow-2xl animate-in fade-in zoom-in">
-            <h1 className="text-5xl md:text-7xl font-black text-white title-font drop-shadow-2xl">
-              Tina疯狂 <span className="text-yellow-400 italic">8 点</span>
+            <h1 className="flex flex-col items-center drop-shadow-2xl title-font leading-none">
+              <span className="text-5xl md:text-7xl font-black text-white">Tina</span>
+              <span className="text-4xl md:text-6xl font-black text-yellow-400 mt-2">疯狂8点</span>
             </h1>
             <div className="text-white/70 max-w-md mx-auto text-lg leading-relaxed">
               <p>匹配数字或者花色即可出牌，8是万用牌</p>
@@ -273,7 +273,7 @@ const App: React.FC = () => {
         {/* 游戏结束界面 */}
         {gameState === GameState.GAME_OVER && (
           <div className="absolute inset-0 z-40 bg-black/60 backdrop-blur-md flex flex-col items-center justify-center animate-in fade-in">
-             <h2 className="text-6xl font-black text-white mb-8 title-font">{message}</h2>
+             <h2 className="text-6xl font-black text-white mb-8 title-font text-center px-4">{message}</h2>
              <button 
               onClick={() => setGameState(GameState.LOBBY)}
               className="px-12 py-4 bg-white text-black font-black text-xl rounded-full hover:bg-gray-200 transition-all transform hover:scale-110"
@@ -286,7 +286,7 @@ const App: React.FC = () => {
 
       {/* 玩家手牌 */}
       {gameState !== GameState.LOBBY && gameState !== GameState.GAME_OVER && (
-        <div className="w-full max-w-6xl pb-4">
+        <div className="w-full max-w-6xl pb-4 overflow-visible">
           <div className="flex flex-wrap justify-center -space-x-8 md:-space-x-12 overflow-visible px-4">
             {playerHand.map((card) => (
               <div 
