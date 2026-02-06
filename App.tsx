@@ -13,7 +13,7 @@ const App: React.FC = () => {
   const [aiHand, setAiHand] = useState<CardType[]>([]);
   const [discardPile, setDiscardPile] = useState<CardType[]>([]);
   const [activeSuit, setActiveSuit] = useState<Suit | null>(null);
-  const [message, setMessage] = useState<string>("欢迎来到 Tina疯狂8点！");
+  const [message, setMessage] = useState<string>("欢迎来到 Tina游戏厅");
   const [turn, setTurn] = useState<PlayerType>('PLAYER');
 
   // 初始化游戏
@@ -170,30 +170,30 @@ const App: React.FC = () => {
   return (
     <div className="h-screen w-full relative flex flex-col items-center justify-between py-6 px-4 bg-gradient-to-b from-[#065f46] to-[#064e3b]">
       {/* HUD - 信息面板 */}
-      <div className="w-full flex justify-between items-center px-4 max-w-5xl">
+      <div className="w-full flex justify-between items-center px-2 max-w-5xl">
         {/* 对手面板 - AI */}
-        <div className="flex flex-col items-center gap-1 bg-black/20 p-3 rounded-2xl border border-white/10 min-w-[80px] shadow-lg backdrop-blur-sm">
-          <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl border-2 border-white shadow-inner">
+        <div className="flex flex-col items-center gap-1 bg-black/20 p-2 md:p-3 rounded-2xl border border-white/10 min-w-[70px] md:min-w-[80px] shadow-lg backdrop-blur-sm">
+          <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg md:text-xl border-2 border-white shadow-inner">
             AI
           </div>
-          <p className="text-white/60 text-[10px] uppercase font-black tracking-widest mt-1">对手</p>
-          <p className="text-white font-black text-xs">{aiHand.length} 张牌</p>
+          <p className="text-white/60 text-[9px] md:text-[10px] uppercase font-black tracking-widest mt-0.5">对手</p>
+          <p className="text-white font-black text-[10px] md:text-xs whitespace-nowrap">{aiHand.length} 张牌</p>
         </div>
         
-        {/* 中央提示信息 */}
-        <div className="bg-black/40 px-6 py-2 rounded-full border border-white/10 shadow-xl max-w-[40%] text-center">
-          <p className="text-yellow-400 font-black text-sm md:text-base tracking-wider uppercase title-font truncate">
+        {/* 中央提示信息 - 优化宽度逻辑 */}
+        <div className="flex-1 mx-2 bg-black/40 px-2 md:px-6 py-2 rounded-full border border-white/10 shadow-xl text-center min-w-0">
+          <p className="text-yellow-400 font-black text-[10px] sm:text-xs md:text-base tracking-wider uppercase title-font leading-tight">
             {message}
           </p>
         </div>
 
         {/* 玩家面板 - 我 */}
-        <div className="flex flex-col items-center gap-1 bg-black/20 p-3 rounded-2xl border border-white/10 min-w-[80px] shadow-lg backdrop-blur-sm">
-          <div className="w-12 h-12 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-xl border-2 border-white shadow-inner">
+        <div className="flex flex-col items-center gap-1 bg-black/20 p-2 md:p-3 rounded-2xl border border-white/10 min-w-[70px] md:min-w-[80px] shadow-lg backdrop-blur-sm">
+          <div className="w-10 h-10 md:w-12 md:h-12 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-lg md:text-xl border-2 border-white shadow-inner">
             我
           </div>
-          <p className="text-white/60 text-[10px] uppercase font-black tracking-widest mt-1">玩家</p>
-          <p className="text-white font-black text-xs">{playerHand.length} 张牌</p>
+          <p className="text-white/60 text-[9px] md:text-[10px] uppercase font-black tracking-widest mt-0.5">玩家</p>
+          <p className="text-white font-black text-[10px] md:text-xs whitespace-nowrap">{playerHand.length} 张牌</p>
         </div>
       </div>
 
@@ -252,18 +252,18 @@ const App: React.FC = () => {
 
         {/* 游戏大厅界面 */}
         {gameState === GameState.LOBBY && (
-          <div className="text-center space-y-8 p-12 bg-black/30 rounded-3xl backdrop-blur-md border border-white/10 shadow-2xl animate-in fade-in zoom-in">
+          <div className="text-center space-y-8 p-8 md:p-12 bg-black/30 rounded-3xl backdrop-blur-md border border-white/10 shadow-2xl animate-in fade-in zoom-in mx-4">
             <h1 className="flex flex-col items-center drop-shadow-2xl title-font leading-none">
               <span className="text-5xl md:text-7xl font-black text-white">Tina</span>
               <span className="text-4xl md:text-6xl font-black text-yellow-400 mt-2">疯狂8点</span>
             </h1>
-            <div className="text-white/70 max-w-md mx-auto text-lg leading-relaxed">
+            <div className="text-white/70 max-w-md mx-auto text-base md:text-lg leading-relaxed">
               <p>匹配数字或者花色即可出牌，8是万用牌</p>
-              <p className="mt-2 font-black text-white text-xl">先出完所有牌的人获胜</p>
+              <p className="mt-2 font-black text-white text-lg md:text-xl">先出完所有牌的人获胜</p>
             </div>
             <button 
               onClick={startGame}
-              className="px-12 py-4 bg-yellow-400 hover:bg-yellow-300 text-black font-black text-xl rounded-full shadow-[0_0_40px_rgba(250,204,21,0.3)] transition-all transform hover:scale-110 active:scale-95 uppercase tracking-widest"
+              className="px-10 py-3 md:px-12 md:py-4 bg-yellow-400 hover:bg-yellow-300 text-black font-black text-lg md:text-xl rounded-full shadow-[0_0_40px_rgba(250,204,21,0.3)] transition-all transform hover:scale-110 active:scale-95 uppercase tracking-widest"
             >
               开始游戏
             </button>
@@ -273,7 +273,7 @@ const App: React.FC = () => {
         {/* 游戏结束界面 */}
         {gameState === GameState.GAME_OVER && (
           <div className="absolute inset-0 z-40 bg-black/60 backdrop-blur-md flex flex-col items-center justify-center animate-in fade-in">
-             <h2 className="text-6xl font-black text-white mb-8 title-font text-center px-4">{message}</h2>
+             <h2 className="text-4xl md:text-6xl font-black text-white mb-8 title-font text-center px-4">{message}</h2>
              <button 
               onClick={() => setGameState(GameState.LOBBY)}
               className="px-12 py-4 bg-white text-black font-black text-xl rounded-full hover:bg-gray-200 transition-all transform hover:scale-110"
