@@ -1,11 +1,23 @@
-<div align="center">
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+# Tina 疯狂 8 点 (Crazy Eights)
 
-  <h1>Built with AI Studio</h2>
+一款由 Tina 呈现的高性能、响应式的纸牌游戏。
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+## 特色
+- 🎰 精美的赌场风格 UI 界面
+- 🤖 智能 AI 对手
+- 📱 完全适配移动端和桌面端
+- ⚡ 基于 Vite + React + Tailwind CSS 构建
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+## 部署到 Vercel
+1. 将代码上传到 GitHub 仓库。
+2. 登录 [Vercel](https://vercel.com)。
+3. 点击 "Add New" -> "Project"。
+4. 导入你的 GitHub 仓库。
+5. Vercel 会自动检测到 Vite 配置，点击 "Deploy" 即可。
 
-</div>
+## 本地开发
+```bash
+npm install
+npm run dev
+```
